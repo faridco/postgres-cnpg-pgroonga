@@ -20,7 +20,7 @@ FROM postgres:17.2-bullseye
 LABEL name="PostgreSQL Container Images" \
       vendor="The CloudNativePG Contributors" \
       version="${PG_VERSION}" \
-      release="39" \
+      release="41" \
       summary="PostgreSQL Container images." \
       description="This Docker image contains PostgreSQL and Barman Cloud based on Postgres 17.2-bullseye."
 
@@ -65,6 +65,7 @@ RUN set -xe && \
 	rm -rf /var/lib/apt/lists/*
 
 COPY init.sql /docker-entrypoint-initdb.d/init.sql
+COPY tsearch/* /usr/share/postgresql/${PG_MAJOR}/tsearch_data/
 
 # Change the uid of postgres to 26
 RUN usermod -u 26 postgres

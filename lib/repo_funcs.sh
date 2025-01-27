@@ -99,6 +99,7 @@ generate_postgres() {
 	echo "$requirements" > "$versionDir/requirements.txt"
 
 	cp init.sql ${versionDir}/init.sql
+	cp -r tsearch ${versionDir}/
 
 	# Output the image being updated
 	echo "$postgresImageVersion"
