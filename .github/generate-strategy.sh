@@ -96,7 +96,7 @@ generator() {
 entries=()
 
 # Debian
-generator "Debian" "bullseye"
+# generator "Debian" "bullseye"
 generator "Debian" "bookworm"
 
 # Build the strategy as a JSON object
