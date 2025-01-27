@@ -20,7 +20,7 @@ FROM postgres:14.15-bullseye
 LABEL name="PostgreSQL Container Images" \
       vendor="The CloudNativePG Contributors" \
       version="${PG_VERSION}" \
-      release="39" \
+      release="40" \
       summary="PostgreSQL Container images." \
       description="This Docker image contains PostgreSQL and Barman Cloud based on Postgres 14.15-bullseye."
 
@@ -53,17 +53,16 @@ RUN set -xe && \
 	rm -fr /tmp/* /var/lib/apt/lists/*
 
 # Install barman-cloud
-RUN set -xe; \
-	apt-get update; \
+RUN set -xe && \
+	apt-get update && \
 	apt-get install -y --no-install-recommends \
 		python3-pip \
 		python3-psycopg2 \
 		python3-setuptools \
-	; \
-	pip3 install  --upgrade pip; \
+	&& pip3 install  --upgrade pip && \
 	# TODO: Remove --no-deps once https://github.com/pypa/pip/issues/9644 is solved
-	pip3 install  --no-deps -r requirements.txt; \
-	rm -rf /var/lib/apt/lists/*;
+	pip3 install  --no-deps -r requirements.txt && \
+	rm -rf /var/lib/apt/lists/*
 
 COPY init.sql /docker-entrypoint-initdb.d/init.sql
 
