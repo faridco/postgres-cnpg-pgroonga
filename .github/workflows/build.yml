@@ -11,7 +11,7 @@ on:
 env:
   IMAGE_STAGING: "ghcr.io/${{ github.repository_owner }}/postgresql-testing"
   IMAGE_RELEASE: "ghcr.io/${{ github.repository_owner }}/postgresql"
-  DEFAULT_DISTRO: "bullseye"
+  DEFAULT_DISTRO: "bookworm"
 
 jobs:
   generate-jobs:
