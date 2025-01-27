@@ -20,7 +20,7 @@ FROM postgres:16.6-bookworm
 LABEL name="PostgreSQL Container Images" \
       vendor="The CloudNativePG Contributors" \
       version="${PG_VERSION}" \
-      release="33" \
+      release="36" \
       summary="PostgreSQL Container images." \
       description="This Docker image contains PostgreSQL and Barman Cloud based on Postgres 16.6-bookworm."
 
@@ -29,15 +29,28 @@ LABEL org.opencontainers.image.description="This Docker image contains PostgreSQ
 COPY requirements.txt /
 
 # Install additional extensions
-RUN set -xe; \
-	apt-get update; \
+ENV PGROONGA_VERSION=3.2.5-1
+RUN set -xe && \
+	apt-get update && \
 	apt-get install -y --no-install-recommends \
 		"postgresql-${PG_MAJOR}-pgaudit" \
 		"postgresql-${PG_MAJOR}-pgvector" \
 		"postgresql-${PG_MAJOR}-pg-failover-slots" \
-	; \
-	rm -fr /tmp/* ; \
-	rm -rf /var/lib/apt/lists/*;
+	&& apt install -y -V curl lsb-release && \
+	curl -LO https://apache.jfrog.io/artifactory/arrow/debian/apache-arrow-apt-source-latest-$(lsb_release --codename --short).deb && \
+	apt-get install -y -V ./apache-arrow-apt-source-latest-$(lsb_release --codename --short).deb && \
+	rm apache-arrow-apt-source-latest-$(lsb_release --codename --short).deb && \
+	curl -LO https://packages.groonga.org/debian/groonga-apt-source-latest-$(lsb_release --codename --short).deb && \
+	apt-get install -y -V ./groonga-apt-source-latest-$(lsb_release --codename --short).deb && \
+	rm groonga-apt-source-latest-$(lsb_release --codename --short).deb && \
+	apt-get update && \
+		apt install -y -V \
+		postgresql-${PG_MAJOR}-pgdg-pgroonga=${PGROONGA_VERSION} \
+		groonga-normalizer-mysql \
+		groonga-token-filter-stem \
+		groonga-tokenizer-mecab && \
+	rm -fr /tmp/*  && \
+	rm -rf /var/lib/apt/lists/*
 
 # Install barman-cloud
 RUN set -xe; \
