@@ -20,7 +20,7 @@ FROM postgres:13.18-bullseye
 LABEL name="PostgreSQL Container Images" \
       vendor="The CloudNativePG Contributors" \
       version="${PG_VERSION}" \
-      release="36" \
+      release="40" \
       summary="PostgreSQL Container images." \
       description="This Docker image contains PostgreSQL and Barman Cloud based on Postgres 13.18-bullseye."
 
@@ -45,12 +45,12 @@ RUN set -xe && \
 	rm groonga-apt-source-latest-$(lsb_release --codename --short).deb && \
 	apt-get update && \
 		apt install -y -V \
+		hunspell-en-us hunspell-ru \
 		postgresql-${PG_MAJOR}-pgdg-pgroonga=${PGROONGA_VERSION} \
 		groonga-normalizer-mysql \
 		groonga-token-filter-stem \
 		groonga-tokenizer-mecab && \
-	rm -fr /tmp/*  && \
-	rm -rf /var/lib/apt/lists/*
+	rm -fr /tmp/* /var/lib/apt/lists/*
 
 # Install barman-cloud
 RUN set -xe; \
@@ -64,6 +64,8 @@ RUN set -xe; \
 	# TODO: Remove --no-deps once https://github.com/pypa/pip/issues/9644 is solved
 	pip3 install  --no-deps -r requirements.txt; \
 	rm -rf /var/lib/apt/lists/*;
+
+COPY init.sql /docker-entrypoint-initdb.d/init.sql
 
 # Change the uid of postgres to 26
 RUN usermod -u 26 postgres

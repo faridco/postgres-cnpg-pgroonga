@@ -98,6 +98,8 @@ generate_postgres() {
 	# Update requirements.txt
 	echo "$requirements" > "$versionDir/requirements.txt"
 
+	cp init.sql ${versionDir}/init.sql
+
 	# Output the image being updated
 	echo "$postgresImageVersion"
 
