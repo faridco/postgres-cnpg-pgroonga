@@ -5,12 +5,12 @@ metadata:
 spec:
   images:
     - major: 13
-      image: ghcr.io/faridco/postgres-cnpg-pgroonga:13.18-41-bookworm@sha256:28509366fa74be4ca99ebe5be48bc068b9b8f5bac1b913b61afc0fbe0716bad3
+      image: ghcr.io/faridco/postgres-cnpg-pgroonga:13.18-42-bookworm@sha256:5cd0e65d9a6bade21ea983df8ef30018643c4939dc8d459b9ac39320e01622cd
     - major: 14
-      image: ghcr.io/faridco/postgres-cnpg-pgroonga:14.15-41-bookworm@sha256:549018d0c94d7db1af0ebf0b494b83c44b576e5fbf75450e9cd88d42da72e0f3
+      image: ghcr.io/faridco/postgres-cnpg-pgroonga:14.15-42-bookworm@sha256:0a88ab3bfa65402ba6bfa9a2dfbd9ce3f6c7e6b11c5614fc107428cc970dbc86
     - major: 15
-      image: ghcr.io/faridco/postgres-cnpg-pgroonga:15.10-41-bookworm@sha256:46315528df47fcf142513af8e6ddf6e58238f1b04cffa30c5316e9e9671714ec
+      image: ghcr.io/faridco/postgres-cnpg-pgroonga:15.10-42-bookworm@sha256:49283e81215032203cc27b0c39b3b2bcaf78f58621c66d9a15ca3f6c35786f67
     - major: 16
-      image: ghcr.io/faridco/postgres-cnpg-pgroonga:16.6-40-bookworm@sha256:206762ce7d6dbd559afe1e3970ab5f414c1f6c4d188997d0ee93cbd0ba074cfc
+      image: ghcr.io/faridco/postgres-cnpg-pgroonga:16.6-41-bookworm@sha256:4045a5deb602fca7bcfd12492eb155921d4c559f936c0f7b12fcac1530ca85b7
     - major: 17
-      image: ghcr.io/faridco/postgres-cnpg-pgroonga:17.2-39-bookworm@sha256:8bbfa02125df2ad0a28dc9af523d04b415bf909211b8dc8ae6f5d6cfa76fdac9
+      image: ghcr.io/faridco/postgres-cnpg-pgroonga:17.2-40-bookworm@sha256:127f1899f5252b1068c3929d46754396281af4294bc5040b4a211732652061f1
