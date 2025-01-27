@@ -17,7 +17,7 @@ declare -A aliases=(
 )
 
 # Define the current default distribution
-DEFAULT_DISTRO="bullseye"
+DEFAULT_DISTRO="bookworm"
 
 GITHUB_ACTIONS=${GITHUB_ACTIONS:-false}
 
@@ -60,6 +60,7 @@ generator() {
 
 		# Setting distribution tags: "major version", "full version", "full version with release"
 		# i.e. "14-bullseye", "14.2-bullseye", "14.2-1-bullseye"
+		# fullTag="${postgresImageVersion}-${releaseVersion}-${distro}"
 		fullTag="${postgresImageVersion}-${releaseVersion}-${distro}"
 		versionAliases=(
 				"${version}-${distro}"
